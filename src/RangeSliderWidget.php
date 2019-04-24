@@ -9,6 +9,7 @@
 namespace huijiewei\rangeslider;
 
 use yii\bootstrap\InputWidget;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Json;
 
@@ -16,19 +17,17 @@ class RangeSliderWidget extends InputWidget
 {
     public $clientOptions = [];
 
-    public $theme = 'Modern';
-
     public function init()
     {
         parent::init();
 
-        if ($this->theme == 'Flat') {
-            RangeThemeFlatSkinAsset::register($this->getView());
-        } else {
-            RangeThemeModernSkinAsset::register($this->getView());
-        }
+        RangeSliderAsset::register($this->getView());
 
-        $clientOptions = Json::encode($this->clientOptions);
+        $clientOptions = ArrayHelper::merge([
+            'skin' => 'modern',
+        ], $this->clientOptions);
+
+        $clientOptions = Json::encode($clientOptions);
 
         $js = <<<EOD
 $('#{$this->options['id']}').ionRangeSlider({$clientOptions});

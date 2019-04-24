@@ -18,12 +18,11 @@ class RangeSliderAsset extends AssetBundle
     public $sourcePath = '@npm/huijiewei-ion-rangeslider';
 
     public $js = [
-        'js/ion.rangeSlider.js',
+        'js/ion.rangeSlider.min.js',
     ];
 
     public $css = [
-        'css/normalize.css',
-        'css/ion.rangeSlider.css',
+        'css/ion.rangeSlider.min.css',
     ];
 
     public $depends = [
